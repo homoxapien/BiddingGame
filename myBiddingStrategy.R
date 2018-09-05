@@ -1,7 +1,9 @@
 ##bidding strategy
+#dumbs' bids depend on each of their budget(left)
 d_BID <- function(budget){
   return(runif(1, min=0, max=budget))
 }
+#my bid depends on the value of the current item, the total value left and the number of items I got so far
 m_BID <- function(value, past_value, MM){
   if(MM$collect < 8){
     if(value > (20000-past_value)/2){
@@ -25,7 +27,7 @@ m_BID <- function(value, past_value, MM){
     }
   }
 }
-
+#smart guy's bid depends on his budget and my bid
 s_BID <- function(budget, master){
   if(budget>=master){
     sbid <- rnorm(1, master+1, (budget-master)/3)
